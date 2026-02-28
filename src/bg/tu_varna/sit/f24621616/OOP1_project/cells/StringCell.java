@@ -9,7 +9,6 @@ public class StringCell implements Cell {
         this.value = value;
     }
 
-
     @Override
     public double getValue() {
         try {
