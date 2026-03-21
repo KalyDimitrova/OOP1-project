@@ -11,12 +11,12 @@ public class SaveCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
         if (state.isFileIsOpen()) {
             // TODO save the file!
-            System.out.println("Successfully saved " + state.getFilePath());
+            return "Successfully saved " + state.getFilePath();
         } else {
-            System.out.println("No file is currently open.");
+            throw new IllegalArgumentException("No file is currently open.");
         }
     }
 }

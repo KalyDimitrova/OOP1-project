@@ -11,15 +11,15 @@ public class CloseCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
         if (state.isFileIsOpen()) {
             state.setCurrentTable(null);
             String currentFilePath = state.getFilePath();
             state.setFilePath(null);
             state.setFileIsOpen(false);
-            System.out.println("Successfully closed " + currentFilePath);
+            return "Successfully closed " + currentFilePath;
         } else {
-            System.out.println("No file is currently open.");
+            throw new IllegalArgumentException("No file is currently open.");
         }
     }
 }

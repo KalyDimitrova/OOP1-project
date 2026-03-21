@@ -13,13 +13,13 @@ public class SaveAsCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
         if (state.isFileIsOpen()) {
             // TODO save the file as the new file path from user input!
             state.setFilePath(newFilePath);
-            System.out.println("Successfully saved " + newFilePath);
+            return "Successfully saved " + newFilePath;
         } else {
-            System.out.println("No file is currently open.");
+            throw new IllegalArgumentException("No file is currently open.");
         }
     }
 }

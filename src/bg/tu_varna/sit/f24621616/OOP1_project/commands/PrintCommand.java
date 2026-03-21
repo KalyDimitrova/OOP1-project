@@ -11,12 +11,12 @@ public class PrintCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
         if (state.isFileIsOpen()) {
             // TODO follow the formatting!!!
-            System.out.println(state.getCurrentTable());
+            return state.getCurrentTable().toString();
         } else {
-            System.out.println("No file is currently open.");
+            throw new IllegalArgumentException("No file is currently open.");
         }
     }
 }
