@@ -5,12 +5,13 @@ import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
 public class HelpCommand implements Command {
     @Override
     public String execute() {
-        return "The following commands are supported:\n" +
-                "open <file>     opens <file>\n" +
-                "close           closes currently opened file\n" +
-                "save            saves the currently open file\n" +
-                "save as <file>  saves the currently open file in <file>\n" +
-                "help            prints this information\n" +
-                "exit            exists the program";
+        return """
+                The following commands are supported:
+                open <file>     opens <file>
+                close           closes currently opened file
+                save            saves the currently open file
+                save as <file>  saves the currently open file in <file>
+                help            prints this information
+                exit            exists the program""";
     }
 }
