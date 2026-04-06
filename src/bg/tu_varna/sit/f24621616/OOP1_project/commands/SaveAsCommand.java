@@ -1,21 +1,56 @@
 package bg.tu_varna.sit.f24621616.OOP1_project.commands;
 
 import bg.tu_varna.sit.f24621616.OOP1_project.app.CurrentState;
+import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
 import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
+import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+/**
+ * Represents saving the contents of the file in a new place.
+ */
 public class SaveAsCommand implements Command {
     private CurrentState state;
     private String newFilePath;
 
+    /**
+     * Creates a SaveAsCommand with given application state.
+     *
+     * @param state the current state of the application
+     * @param newFilePath the new file path to save the file to
+     */
     public SaveAsCommand(CurrentState state, String newFilePath) {
         this.state = state;
         this.newFilePath = newFilePath;
     }
 
+    /**
+     * Saves the current table to the new file.
+     * Throws an exception if no file is currently open.
+     * Throws an exception if an error occurs while writing to the file.
+     *
+     * @return a success message with the saved file name
+     */
     @Override
     public String execute() {
         if (state.isFileIsOpen()) {
-            // TODO save the file as the new file path from user input!
+            try (PrintWriter writer = new PrintWriter(new FileWriter(newFilePath))) {
+                Table table = state.getCurrentTable();
+                for (int i = 0; i < table.getRowCount(); i++) {
+                    StringBuilder row = new StringBuilder();
+                    for (int j = 0; j < table.getColumnCount(); j++) {
+                        Cell cell = table.getCell(i, j);
+                        if (j > 0) row.append(", ");
+                        if (cell != null) row.append(cell.toString());
+                    }
+                    writer.println(row.toString());
+                }
+            } catch (IOException e) {
+                throw new RuntimeException("Error saving file: " + e.getMessage());
+            }
             state.setFilePath(newFilePath);
             return "Successfully saved " + newFilePath;
         } else {
