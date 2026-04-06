@@ -84,12 +84,21 @@ public class FormulaCell implements Cell {
      *
      * @return the result of the formula as a String, or "ERROR" if invalid
      */
-    @Override
-    public String toString() {
+    public String getDisplayValue() {
         try {
             return String.valueOf(getValue());
         } catch (Exception e) {
             return "ERROR";
         }
+    }
+
+    /**
+     * Returns the formula string as stored in the cell.
+     *
+     * @return the formula string
+     */
+    @Override
+    public String toString() {
+        return formula;
     }
 }
