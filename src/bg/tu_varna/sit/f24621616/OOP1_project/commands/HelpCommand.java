@@ -2,7 +2,15 @@ package bg.tu_varna.sit.f24621616.OOP1_project.commands;
 
 import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
 
+/**
+ * Represents a Help menu for all commands of the application.
+ */
 public class HelpCommand implements Command {
+    /**
+     * Returns descriptions of all commands of the application.
+     *
+     * @return description of all commands
+     */
     @Override
     public String execute() {
         return """

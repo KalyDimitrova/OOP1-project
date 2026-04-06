@@ -8,7 +8,7 @@ import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
 public class DoubleCell implements Cell {
     private double value;
     /**
-     * Creates an DoubleCell with the given value.
+     * Creates a DoubleCell with the given value.
      *
      * @param value the double value of the cell
      */

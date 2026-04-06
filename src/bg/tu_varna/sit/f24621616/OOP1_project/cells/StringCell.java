@@ -8,7 +8,7 @@ import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
 public class StringCell implements Cell {
     private String value;
     /**
-     * Creates an StringCell with the given value.
+     * Creates a StringCell with the given value.
      *
      * @param value the String value of the cell
      */
