@@ -6,7 +6,17 @@ import bg.tu_varna.sit.f24621616.OOP1_project.parser.CommandParser;
 
 import java.util.Scanner;
 
+/**
+ * Represents the application itself.
+ */
 public class Application {
+    /**
+     * Starts the application and runs the main command loop.
+     * Reads user input, parses it into commands and executes them.
+     * Prints the result or error message after each command.
+     *
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
         CurrentState currentState = new CurrentState();
         CommandParser parser = new CommandParser();

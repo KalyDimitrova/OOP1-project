@@ -4,7 +4,19 @@ import bg.tu_varna.sit.f24621616.OOP1_project.app.CurrentState;
 import bg.tu_varna.sit.f24621616.OOP1_project.commands.*;
 import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
 
+/**
+ * Represents a parser for the input from the client.
+ */
 public class CommandParser {
+    /**
+     * Parses the input from the client and returns the matching command.
+     * Splits the input into parts and matches the first part to a command.
+     * Throws an exception if the command is unknown or parameters are missing.
+     *
+     * @param input the line typed by the client
+     * @param state the current state of the application
+     * @return the command matching the input
+     */
     public Command parse(String input, CurrentState state) {
         String[] parts = input.trim().split(" ",4);
         String command = parts[0].toLowerCase();
