@@ -54,9 +54,17 @@ public class EditCommand implements Command {
             } else if (newValue.startsWith("=")) {
                 newCell = new FormulaCell(newValue, currentState.getCurrentTable());
             } else if (newValue.contains(".")) {
-                newCell = new DoubleCell(Double.parseDouble(newValue));
+                try {
+                    newCell = new DoubleCell(Double.parseDouble(newValue));
+                } catch (NumberFormatException e) {
+                    throw new IllegalArgumentException("Invalid value: " + newValue);
+                }
             } else {
-                newCell = new IntegerCell(Integer.parseInt(newValue));
+                try {
+                    newCell = new IntegerCell(Integer.parseInt(newValue));
+                } catch (NumberFormatException e) {
+                    throw new IllegalArgumentException("Invalid value: " + newValue);
+                }
             }
             currentState.getCurrentTable().setCell(row - 1, col - 1, newCell);
             return "Successfully edited cell R" + row + "C" + col;

@@ -6,6 +6,8 @@ import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
 import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
 import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
 
+import java.util.Arrays;
+
 /**
  * Represents the printing of the current table.
  */
@@ -35,6 +37,7 @@ public class PrintCommand implements Command {
             Table table = state.getCurrentTable();
 
             int[] columnWidths = new int[table.getColumnCount()];
+            Arrays.fill(columnWidths, 1);
 
             for (int i = 0; i < table.getRowCount(); i++) {
                 for (int j = 0; j < table.getColumnCount(); j++) {

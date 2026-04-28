@@ -15,11 +15,13 @@ public class HelpCommand implements Command {
     public String execute() {
         return """
                 The following commands are supported:
-                open <file>     opens <file>
-                close           closes currently opened file
-                save            saves the currently open file
-                save as <file>  saves the currently open file in <file>
-                help            prints this information
-                exit            exists the program""";
+                open <file>                 opens <file>
+                close                       closes currently opened file
+                save                        saves the currently open file
+                save as <file>              saves the currently open file in <file>
+                print                       prints the spreadsheet
+                edit <row> <col> <value>    edits the cell at the given row and column
+                help                        prints this information
+                exit                        exits the program""";
     }
 }
