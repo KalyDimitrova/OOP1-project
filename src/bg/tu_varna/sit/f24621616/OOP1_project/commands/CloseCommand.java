@@ -7,6 +7,7 @@ import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
  * Represents the closing of an open file.
  */
 public class CloseCommand implements Command {
+    /** The current state of the application. */
     private CurrentState state;
 
     /**

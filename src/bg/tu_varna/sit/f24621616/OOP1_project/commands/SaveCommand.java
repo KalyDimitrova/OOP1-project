@@ -13,6 +13,7 @@ import java.io.PrintWriter;
  * Represents saving the contents of the file in the same place.
  */
 public class SaveCommand implements Command {
+    /** The current state of the application. */
     private CurrentState state;
 
     /**

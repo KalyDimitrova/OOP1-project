@@ -12,13 +12,17 @@ import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
  * Represents an edit that needs to be done in the current table of the application
  */
 public class EditCommand implements Command {
+    /** The current state of the application. */
     private CurrentState currentState;
+    /** The row of the cell to edit. */
     private int row;
+    /** The column of the cell to edit. */
     private int col;
+    /** The new value to set in the cell. */
     private String newValue;
 
     /**
-     * Creates an Edit command with the given state,
+     * Creates an EditCommand with the given state,
      * the location of the cell to be edited
      * and the value to put in said cell.
      *

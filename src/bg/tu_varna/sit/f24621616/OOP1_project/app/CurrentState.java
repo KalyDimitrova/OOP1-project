@@ -6,8 +6,11 @@ import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
  * Represents the current state of the application.
  */
 public class CurrentState {
+    /** The current table loaded in memory. */
     private Table currentTable;
+    /** The path of the currently open file. */
     private String filePath;
+    /** Whether a file is currently open. */
     private boolean fileIsOpen;
 
     /**

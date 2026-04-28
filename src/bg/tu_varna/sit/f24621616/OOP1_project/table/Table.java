@@ -9,6 +9,7 @@ import java.util.List;
  * Represents a spreadsheet table containing rows and columns of cells.
  */
 public class Table {
+    /** A list of rows, where each row is a list of cells. */
     private List<List<Cell>> cells;
     /**
      * Creates an empty Table with no rows or columns.

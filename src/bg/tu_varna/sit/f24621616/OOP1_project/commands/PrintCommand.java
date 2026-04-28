@@ -10,9 +10,7 @@ import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
  * Represents the printing of the current table.
  */
 public class PrintCommand implements Command {
-    /**
-     * The current state of the application
-     */
+    /**The current state of the application. */
     private CurrentState state;
 
     /**

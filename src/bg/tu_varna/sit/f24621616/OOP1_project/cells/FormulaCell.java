@@ -7,7 +7,9 @@ import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
  * Represents a cell containing a formula as its value.
  */
 public class FormulaCell implements Cell {
+    /** The formula string starting with '='. */
     private String formula;
+    /** The table used to look up cell references. */
     private Table table;
 
     /**

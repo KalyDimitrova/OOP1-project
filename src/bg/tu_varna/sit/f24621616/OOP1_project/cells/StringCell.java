@@ -6,7 +6,9 @@ import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
  * Represents a cell containing a String value.
  */
 public class StringCell implements Cell {
+    /** The value stored in the cell. */
     private String value;
+
     /**
      * Creates a StringCell with the given value.
      *

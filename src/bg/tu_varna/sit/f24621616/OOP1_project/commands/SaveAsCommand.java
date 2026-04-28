@@ -13,7 +13,9 @@ import java.io.PrintWriter;
  * Represents saving the contents of the file in a new place.
  */
 public class SaveAsCommand implements Command {
+    /** The current state of the application. */
     private CurrentState state;
+    /** The new file path to save the file to. */
     private String newFilePath;
 
     /**

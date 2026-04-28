@@ -6,7 +6,9 @@ import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
  * Represents a cell containing an Integer value.
  */
 public class IntegerCell implements Cell {
+    /** The value stored in the cell. */
     private int value;
+
     /**
      * Creates an IntegerCell with the given value.
      *
