@@ -5,9 +5,10 @@ package bg.tu_varna.sit.f24621616.OOP1_project.interfaces;
  */
 public interface Command {
     /**
-     * Returns the description of what the command has done.
+     * Executes the command with the given arguments.
      *
+     * @param args the arguments passed to the command
      * @return the description of the action caused by the command
      */
-    public String execute();
+    public String execute(String[] args);
 }

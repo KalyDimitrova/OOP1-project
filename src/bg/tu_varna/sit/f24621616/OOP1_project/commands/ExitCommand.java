@@ -9,10 +9,11 @@ public class ExitCommand implements Command {
     /**
      * Exits the program and prints the exiting message.
      *
+     * @param args not used
      * @return the exiting message
      */
     @Override
-    public String execute() {
+    public String execute(String args[]) {
         return "Exiting the program...";
     }
 }

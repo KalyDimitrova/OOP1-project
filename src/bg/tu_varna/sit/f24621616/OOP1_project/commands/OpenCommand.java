@@ -5,6 +5,7 @@ import bg.tu_varna.sit.f24621616.OOP1_project.cells.DoubleCell;
 import bg.tu_varna.sit.f24621616.OOP1_project.cells.FormulaCell;
 import bg.tu_varna.sit.f24621616.OOP1_project.cells.IntegerCell;
 import bg.tu_varna.sit.f24621616.OOP1_project.cells.StringCell;
+import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.FileAlreadyOpenException;
 import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
 import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
 import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
@@ -20,18 +21,15 @@ import java.io.IOException;
 public class OpenCommand implements Command {
     /** The current state of the application. */
     private CurrentState state;
-    /**The path of the file to open. */
-    private String filePath;
+
 
     /**
      * Creates an OpenCommand with the given state and file.
      *
      * @param state the current state of the application
-     * @param filePath the path of the file to open
      */
-    public OpenCommand(CurrentState state, String filePath) {
+    public OpenCommand(CurrentState state) {
         this.state = state;
-        this.filePath = filePath;
     }
 
     /**
@@ -40,14 +38,16 @@ public class OpenCommand implements Command {
      * Throws an exception if a file is already open.
      * Throws an exception if an error occurs while reading the file.
      *
+     * @param args args[1] is the file path to open
      * @return a success message with the opened file name
      */
     @Override
-    public String execute() {
+    public String execute(String args[]) {
         if (state.isFileIsOpen()) {
-            throw new IllegalArgumentException("A file is already open. Close it first.");
+            throw new FileAlreadyOpenException("A file is already open. Close it first.");
         }
 
+        String filePath = args[1];
         Table table = new Table();
         File file = new File(filePath);
 

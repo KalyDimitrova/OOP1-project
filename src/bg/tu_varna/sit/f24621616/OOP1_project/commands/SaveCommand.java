@@ -1,6 +1,7 @@
 package bg.tu_varna.sit.f24621616.OOP1_project.commands;
 
 import bg.tu_varna.sit.f24621616.OOP1_project.app.CurrentState;
+import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.NoFileOpenException;
 import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
 import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
 import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
@@ -30,10 +31,11 @@ public class SaveCommand implements Command {
      * Throws an exception if no file is currently open.
      * Throws an exception if an error occurs while writing to the file.
      *
+     * @param args not used
      * @return a success message with the saved file name
      */
     @Override
-    public String execute() {
+    public String execute(String args[]) {
         if (state.isFileIsOpen()) {
             try (PrintWriter writer = new PrintWriter(new FileWriter(state.getFilePath()))) {
                 Table table = state.getCurrentTable();
@@ -51,7 +53,7 @@ public class SaveCommand implements Command {
             }
             return "Successfully saved " + state.getFilePath();
         } else {
-            throw new IllegalArgumentException("No file is currently open.");
+            throw new NoFileOpenException("No file is currently open.");
         }
     }
 }

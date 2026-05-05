@@ -1,6 +1,7 @@
 package bg.tu_varna.sit.f24621616.OOP1_project.commands;
 
 import bg.tu_varna.sit.f24621616.OOP1_project.app.CurrentState;
+import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.NoFileOpenException;
 import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
 import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
 import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
@@ -15,18 +16,14 @@ import java.io.PrintWriter;
 public class SaveAsCommand implements Command {
     /** The current state of the application. */
     private CurrentState state;
-    /** The new file path to save the file to. */
-    private String newFilePath;
 
     /**
      * Creates a SaveAsCommand with given application state.
      *
      * @param state the current state of the application
-     * @param newFilePath the new file path to save the file to
      */
-    public SaveAsCommand(CurrentState state, String newFilePath) {
+    public SaveAsCommand(CurrentState state) {
         this.state = state;
-        this.newFilePath = newFilePath;
     }
 
     /**
@@ -34,10 +31,12 @@ public class SaveAsCommand implements Command {
      * Throws an exception if no file is currently open.
      * Throws an exception if an error occurs while writing to the file.
      *
+     * @param args args[1] is the file path to open
      * @return a success message with the saved file name
      */
     @Override
-    public String execute() {
+    public String execute(String[] args) {
+        String newFilePath = args[2];
         if (state.isFileIsOpen()) {
             try (PrintWriter writer = new PrintWriter(new FileWriter(newFilePath))) {
                 Table table = state.getCurrentTable();
@@ -56,7 +55,7 @@ public class SaveAsCommand implements Command {
             state.setFilePath(newFilePath);
             return "Successfully saved " + newFilePath;
         } else {
-            throw new IllegalArgumentException("No file is currently open.");
+            throw new NoFileOpenException("No file is currently open.");
         }
     }
 }

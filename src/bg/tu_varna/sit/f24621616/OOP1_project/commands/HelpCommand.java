@@ -9,10 +9,11 @@ public class HelpCommand implements Command {
     /**
      * Returns descriptions of all commands of the application.
      *
+     * @param args not used
      * @return description of all commands
      */
     @Override
-    public String execute() {
+    public String execute(String args[]) {
         return """
                 The following commands are supported:
                 open <file>                 opens <file>

@@ -5,6 +5,8 @@ import bg.tu_varna.sit.f24621616.OOP1_project.cells.DoubleCell;
 import bg.tu_varna.sit.f24621616.OOP1_project.cells.FormulaCell;
 import bg.tu_varna.sit.f24621616.OOP1_project.cells.IntegerCell;
 import bg.tu_varna.sit.f24621616.OOP1_project.cells.StringCell;
+import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.InvalidValueException;
+import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.NoFileOpenException;
 import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
 import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
 
@@ -14,12 +16,7 @@ import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
 public class EditCommand implements Command {
     /** The current state of the application. */
     private CurrentState currentState;
-    /** The row of the cell to edit. */
-    private int row;
-    /** The column of the cell to edit. */
-    private int col;
-    /** The new value to set in the cell. */
-    private String newValue;
+
 
     /**
      * Creates an EditCommand with the given state,
@@ -27,15 +24,9 @@ public class EditCommand implements Command {
      * and the value to put in said cell.
      *
      * @param currentState the current state of the application
-     * @param row the row of the cell to edit
-     * @param col the col of the cell to edit
-     * @param newValue the new value to put in said cell
      */
-    public EditCommand(CurrentState currentState, int row, int col, String newValue) {
+    public EditCommand(CurrentState currentState) {
         this.currentState = currentState;
-        this.row = row;
-        this.col = col;
-        this.newValue = newValue;
     }
 
     /**
@@ -43,10 +34,15 @@ public class EditCommand implements Command {
      * Creates a new cell with the new value and sets it in place of the cell to edit.
      * Throws an exception if no file is currently open.
      *
+     * @param args args[1] is the row, args[2] is the column, args[3] is the new value
      * @return a success message with the edited cell
      */
     @Override
-    public String execute() {
+    public String execute(String[] args) {
+        int row = Integer.parseInt(args[1]);
+        int col = Integer.parseInt(args[2]);
+        String newValue = args[3];
+
         if (currentState.isFileIsOpen()) {
             Cell newCell;
             if (newValue.startsWith("\"")) {
@@ -57,19 +53,19 @@ public class EditCommand implements Command {
                 try {
                     newCell = new DoubleCell(Double.parseDouble(newValue));
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("Invalid value: " + newValue);
+                    throw new InvalidValueException("Invalid value: " + newValue);
                 }
             } else {
                 try {
                     newCell = new IntegerCell(Integer.parseInt(newValue));
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("Invalid value: " + newValue);
+                    throw new InvalidValueException("Invalid value: " + newValue);
                 }
             }
             currentState.getCurrentTable().setCell(row - 1, col - 1, newCell);
             return "Successfully edited cell R" + row + "C" + col;
         } else {
-            throw new IllegalArgumentException("No file is currently open.");
+            throw new NoFileOpenException("No file is currently open.");
         }
     }
 }
