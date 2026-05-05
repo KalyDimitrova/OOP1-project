@@ -40,6 +40,16 @@ public class StringCell implements Cell {
     }
 
     /**
+     * Returns the value of the cell as a String for display.
+     *
+     * @return the value of the cell as a String
+     */
+    @Override
+    public String getDisplayValue() {
+        return toString();
+    }
+
+    /**
      * Returns the String value.
      *
      * @return the String value of the cell

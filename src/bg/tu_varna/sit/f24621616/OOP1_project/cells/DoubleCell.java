@@ -29,6 +29,16 @@ public class DoubleCell implements Cell {
     }
 
     /**
+     * Returns the value of the cell as a String for display.
+     *
+     * @return the value of the cell as a String
+     */
+    @Override
+    public String getDisplayValue() {
+        return toString();
+    }
+
+    /**
      * Returns the double value as a String.
      *
      * @return the double value of the cell as a String

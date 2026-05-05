@@ -12,4 +12,13 @@ public interface Cell {
      * @return the value of the cell as a double
      */
     public double getValue();
+
+    /**
+     * Returns the display value of the cell for printing.
+     * For formula cells returns the calculated result or "ERROR" if invalid.
+     * For all other cells returns the same as toString().
+     *
+     * @return the display value of the cell as a String
+     */
+    String getDisplayValue();
 }

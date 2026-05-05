@@ -63,10 +63,8 @@ public class PrintCommand implements Command {
 
                     if (cell == null) {
                         value = "";
-                    } else if (cell instanceof FormulaCell) {
-                        value = ((FormulaCell) cell).getDisplayValue();
                     } else {
-                        value = cell.toString();
+                        value = cell.getDisplayValue();
                     }
 
                     output.append(String.format("%-" + columnWidths[j] + "s", value));
