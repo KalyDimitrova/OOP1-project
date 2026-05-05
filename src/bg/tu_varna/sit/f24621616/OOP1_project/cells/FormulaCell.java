@@ -88,7 +88,12 @@ public class FormulaCell implements Cell {
      */
     public String getDisplayValue() {
         try {
-            return String.valueOf(getValue());
+            double result = getValue();
+            if (Double.isInfinite(result) || Double.isNaN(result)) {
+                return "ERROR";
+            }
+
+            return String.valueOf(result);
         } catch (Exception e) {
             return "ERROR";
         }
