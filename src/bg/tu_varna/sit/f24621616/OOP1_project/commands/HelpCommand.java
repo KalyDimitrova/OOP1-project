@@ -1,6 +1,6 @@
 package bg.tu_varna.sit.f24621616.OOP1_project.commands;
 
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Command;
 
 /**
  * Represents a Help menu for all commands of the application.

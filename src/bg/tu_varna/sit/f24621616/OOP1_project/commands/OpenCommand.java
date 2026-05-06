@@ -6,8 +6,8 @@ import bg.tu_varna.sit.f24621616.OOP1_project.cells.FormulaCell;
 import bg.tu_varna.sit.f24621616.OOP1_project.cells.IntegerCell;
 import bg.tu_varna.sit.f24621616.OOP1_project.cells.StringCell;
 import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.FileAlreadyOpenException;
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Cell;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Command;
 import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
 
 import java.io.BufferedReader;
@@ -64,13 +64,13 @@ public class OpenCommand implements Command {
                             if (cellValue.isBlank()) {
                                 continue;
                             } else if (cellValue.startsWith("\"")) {
-                                newCell = new StringCell(cellValue);
+                                newCell = new StringCell(row, col, cellValue);
                             } else if (cellValue.startsWith("=")) {
-                                newCell = new FormulaCell(cellValue, table);
+                                newCell = new FormulaCell(row, col, cellValue, table);
                             } else if (cellValue.contains(".")) {
-                                newCell = new DoubleCell(Double.parseDouble(cellValue));
+                                newCell = new DoubleCell(row, col, Double.parseDouble(cellValue));
                             } else {
-                                newCell = new IntegerCell(Integer.parseInt(cellValue));
+                                newCell = new IntegerCell(row, col, Integer.parseInt(cellValue));
                             }
                             table.setCell(row, col, newCell);
                         }

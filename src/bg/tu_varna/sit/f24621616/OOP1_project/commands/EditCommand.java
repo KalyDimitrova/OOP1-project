@@ -7,8 +7,8 @@ import bg.tu_varna.sit.f24621616.OOP1_project.cells.IntegerCell;
 import bg.tu_varna.sit.f24621616.OOP1_project.cells.StringCell;
 import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.InvalidValueException;
 import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.NoFileOpenException;
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Cell;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Command;
 
 /**
  * Represents an edit that needs to be done in the current table of the application
@@ -46,18 +46,18 @@ public class EditCommand implements Command {
         if (currentState.isFileIsOpen()) {
             Cell newCell;
             if (newValue.startsWith("\"")) {
-                newCell = new StringCell(newValue);
+                newCell = new StringCell(row, col, newValue);
             } else if (newValue.startsWith("=")) {
-                newCell = new FormulaCell(newValue, currentState.getCurrentTable());
+                newCell = new FormulaCell(row, col, newValue, currentState.getCurrentTable());
             } else if (newValue.contains(".")) {
                 try {
-                    newCell = new DoubleCell(Double.parseDouble(newValue));
+                    newCell = new DoubleCell(row, col, Double.parseDouble(newValue));
                 } catch (NumberFormatException e) {
                     throw new InvalidValueException("Invalid value: " + newValue);
                 }
             } else {
                 try {
-                    newCell = new IntegerCell(Integer.parseInt(newValue));
+                    newCell = new IntegerCell(row, col, Integer.parseInt(newValue));
                 } catch (NumberFormatException e) {
                     throw new InvalidValueException("Invalid value: " + newValue);
                 }

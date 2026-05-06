@@ -1,6 +1,6 @@
 package bg.tu_varna.sit.f24621616.OOP1_project.table;
 
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Cell;
 
 import java.util.ArrayList;
 import java.util.List;

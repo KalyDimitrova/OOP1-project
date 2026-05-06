@@ -1,20 +1,23 @@
 package bg.tu_varna.sit.f24621616.OOP1_project.cells;
 
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Cell;
 
 /**
  * Represents a cell containing a String value.
  */
-public class StringCell implements Cell {
+public class StringCell extends Cell {
     /** The value stored in the cell. */
     private String value;
 
     /**
      * Creates a StringCell with the given value.
      *
+     * @param row the row index of the cell
+     * @param col the column index of the cell
      * @param value the String value of the cell
      */
-    public StringCell(String value) {
+    public StringCell(int row, int col, String value) {
+        super(row, col);
         this.value = value;
     }
 

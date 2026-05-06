@@ -1,20 +1,23 @@
 package bg.tu_varna.sit.f24621616.OOP1_project.cells;
 
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Cell;
 
 /**
  * Represents a cell containing an Integer value.
  */
-public class IntegerCell implements Cell {
+public class IntegerCell extends Cell {
     /** The value stored in the cell. */
     private int value;
 
     /**
      * Creates an IntegerCell with the given value.
      *
+     * @param row the row index of the cell
+     * @param col the column index of the cell
      * @param value the integer value of the cell
      */
-    public IntegerCell(int value) {
+    public IntegerCell(int row, int col, int value) {
+        super(row, col);
         this.value = value;
     }
 

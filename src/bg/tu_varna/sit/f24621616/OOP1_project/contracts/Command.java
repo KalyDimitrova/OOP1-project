@@ -1,4 +1,4 @@
-package bg.tu_varna.sit.f24621616.OOP1_project.interfaces;
+package bg.tu_varna.sit.f24621616.OOP1_project.contracts;
 
 /**
  * Represents a command in the application.

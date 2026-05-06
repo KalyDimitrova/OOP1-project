@@ -1,20 +1,23 @@
 package bg.tu_varna.sit.f24621616.OOP1_project.cells;
 
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Cell;
 
 /**
  * Represents a cell containing a Double value.
  */
-public class DoubleCell implements Cell {
+public class DoubleCell extends Cell {
     /** The value stored in the cell. */
     private double value;
 
     /**
      * Creates a DoubleCell with the given value.
      *
+     * @param row the row index of the cell
+     * @param col the column index of the cell
      * @param value the double value of the cell
      */
-    public DoubleCell(double value) {
+    public DoubleCell(int row, int col, double value) {
+        super(row, col);
         this.value = value;
     }
 

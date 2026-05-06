@@ -2,8 +2,8 @@ package bg.tu_varna.sit.f24621616.OOP1_project.commands;
 
 import bg.tu_varna.sit.f24621616.OOP1_project.app.CurrentState;
 import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.NoFileOpenException;
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Cell;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Command;
 import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
 
 import java.io.FileWriter;

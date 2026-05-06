@@ -3,7 +3,7 @@ package bg.tu_varna.sit.f24621616.OOP1_project.parser;
 import bg.tu_varna.sit.f24621616.OOP1_project.app.CurrentState;
 import bg.tu_varna.sit.f24621616.OOP1_project.commands.*;
 import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.UnknownCommandException;
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Command;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Command;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +46,7 @@ public class CommandParser {
 
         Command command = commandMap.get(commandName);
         if (command == null) {
-            throw new UnknownCommandException("Unknown command: " + commandName);
+            throw new UnknownCommandException(  "Unknown command: " + commandName);
         }
 
         return command.execute(parts);

@@ -1,12 +1,12 @@
 package bg.tu_varna.sit.f24621616.OOP1_project.cells;
 
-import bg.tu_varna.sit.f24621616.OOP1_project.interfaces.Cell;
+import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Cell;
 import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
 
 /**
  * Represents a cell containing a formula as its value.
  */
-public class FormulaCell implements Cell {
+public class FormulaCell extends Cell {
     /** The formula string starting with '='. */
     private String formula;
     /** The table used to look up cell references. */
@@ -15,10 +15,13 @@ public class FormulaCell implements Cell {
     /**
      * Creates a FormulaCell with the given formula and table.
      *
+     * @param row the row index of the cell
+     * @param col the column index of the cell
      * @param formula the formula string starting with '='
      * @param table the table used to look up cell references
      */
-    public FormulaCell(String formula, Table table) {
+    public FormulaCell(int row, int col, String formula, Table table) {
+        super(row, col);
         this.formula = formula;
         this.table = table;
     }
