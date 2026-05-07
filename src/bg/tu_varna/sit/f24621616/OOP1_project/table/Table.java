@@ -9,13 +9,16 @@ import java.util.List;
  * Represents a spreadsheet table containing rows and columns of cells.
  */
 public class Table {
-    /** A list of rows, where each row is a list of cells. */
-    private List<List<Cell>> cells;
+    /** A list of rows in the table. */
+    private List<Row> rows;
+    /** A list of columns in the table. */
+    private List<Column> columns;
     /**
      * Creates an empty Table with no rows or columns.
      */
     public Table() {
-        cells = new ArrayList<>();
+        rows = new ArrayList<>();
+        columns = new ArrayList<>();
     }
 
     /**
@@ -27,8 +30,8 @@ public class Table {
      * @return the cell at the given position, or null if it does not exist
      */
     public Cell getCell(int row, int col) {
-        if (row < cells.size() && col < cells.get(row).size()) {
-            return cells.get(row).get(col);
+        if (row < rows.size()) {
+            return rows.get(row).getCell(col);
         }
         return null;
     }
@@ -42,15 +45,16 @@ public class Table {
      * @param cell the cell to set
      */
     public void setCell(int row, int col, Cell cell) {
-        while (cells.size() <= row) {
-            cells.add(new ArrayList<>());
+        while (rows.size() <= row) {
+            rows.add(new Row(rows.size()));
         }
-        List<Cell> rowCells = cells.get(row);
 
-        while (rowCells.size() <= col) {
-            rowCells.add(null);
+        while (columns.size() <= col) {
+            columns.add(new Column(columns.size()));
         }
-        rowCells.set(col, cell);
+
+        rows.get(row).setCell(col, cell);
+        columns.get(col).setCell(row, cell);
     }
 
     /**
@@ -59,22 +63,15 @@ public class Table {
      * @return the number of rows
      */
     public int getRowCount() {
-        return cells.size();
+        return rows.size();
     }
 
     /**
      * Returns the number of columns in the table.
-     * Returns the size of the longest row.
      *
      * @return the number of columns
      */
     public int getColumnCount() {
-        int maxColumns = 0;
-        for (List<Cell> row : cells) {
-            if (row.size() > maxColumns) {
-                maxColumns = row.size();
-            }
-        }
-        return maxColumns;
+        return columns.size();
     }
 }
