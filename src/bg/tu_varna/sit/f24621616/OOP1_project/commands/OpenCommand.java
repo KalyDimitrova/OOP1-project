@@ -65,13 +65,13 @@ public class OpenCommand implements Command {
                             if (cellValue.isBlank()) {
                                 continue;
                             } else if (cellValue.startsWith("\"")) {
-                                newCell = new StringCell(row, col, cellValue);
+                                newCell = new StringCell(row + 1, col + 1, cellValue);
                             } else if (cellValue.startsWith("=")) {
-                                newCell = new FormulaCell(row, col, cellValue, FormulaParser.getNeededCells(cellValue, table));
+                                newCell = new FormulaCell(row + 1, col + 1, cellValue, FormulaParser.getNeededCells(cellValue, table));
                             } else if (cellValue.contains(".")) {
-                                newCell = new DoubleCell(row, col, Double.parseDouble(cellValue));
+                                newCell = new DoubleCell(row + 1, col + 1, Double.parseDouble(cellValue));
                             } else {
-                                newCell = new IntegerCell(row, col, Integer.parseInt(cellValue));
+                                newCell = new IntegerCell(row + 1, col + 1, Integer.parseInt(cellValue));
                             }
                             table.setCell(row, col, newCell);
                         }
