@@ -2,6 +2,10 @@ package bg.tu_varna.sit.f24621616.OOP1_project.cells;
 
 import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Cell;
 import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a cell containing a formula as its value.
@@ -9,8 +13,9 @@ import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
 public class FormulaCell extends Cell {
     /** The formula string starting with '='. */
     private String formula;
-    /** The table used to look up cell references. */
-    private Table table;
+    // Provide only the cells needed for the formula.
+    /** The list of cells needed for the formula. */
+    private List<Cell> cells;
 
     /**
      * Creates a FormulaCell with the given formula and table.
@@ -18,17 +23,17 @@ public class FormulaCell extends Cell {
      * @param row the row index of the cell
      * @param col the column index of the cell
      * @param formula the formula string starting with '='
-     * @param table the table used to look up cell references
+     * @param cells the list of cells needed for the formula
      */
-    public FormulaCell(int row, int col, String formula, Table table) {
+    public FormulaCell(int row, int col, String formula, List<Cell> cells) {
         super(row, col);
         this.formula = formula;
-        this.table = table;
+        this.cells = cells;
     }
 
     /**
      * Resolves a token to its numeric value.
-     * If the token is a cell reference (e.g. R1C1), looks it up in the table.
+     * If the token is a cell reference (e.g. R1C1), searches the cells list for it.
      * Otherwise, parses it as a double.
      *
      * @param token the token to resolve
@@ -40,7 +45,7 @@ public class FormulaCell extends Cell {
             int row = Integer.parseInt(token.substring(1, token.indexOf('C'))) - 1;
             int col = Integer.parseInt(token.substring(token.indexOf('C') + 1)) - 1;
 
-            Cell cell = table.getCell(row, col);
+            Cell cell = findCell(row, col);
             if (cell == null) return 0;
             return cell.getValue();
         } else {
@@ -50,6 +55,26 @@ public class FormulaCell extends Cell {
                 return 0;
             }
         }
+    }
+
+    /**
+     * Searches the list of cells for a cell at the given row and column.
+     * Adds 1 to row and col to convert from 0-based to 1-based indices.
+     * Returns null if no cell is found at the given position.
+     *
+     * @param row the row index to search for
+     * @param col the column index to search for
+     * @return the cell at the given position, or null if not found
+     */
+    // helper method to find the needed cell for the calculations.
+    private Cell findCell(int row, int col) {
+        for (Cell cell : cells) {
+            // + 1 because the table is not 0-based
+            if (cell.getRow() == row + 1 && cell.getCol() == col + 1) {
+                return cell;
+            }
+        }
+        return null;
     }
 
     /**

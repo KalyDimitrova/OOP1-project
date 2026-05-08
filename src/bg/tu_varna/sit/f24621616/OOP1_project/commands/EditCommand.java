@@ -9,6 +9,7 @@ import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.InvalidValueException;
 import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.NoFileOpenException;
 import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Cell;
 import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Command;
+import bg.tu_varna.sit.f24621616.OOP1_project.parser.FormulaParser;
 
 /**
  * Represents an edit that needs to be done in the current table of the application
@@ -32,10 +33,11 @@ public class EditCommand implements Command {
     /**
      * Checks if a file is open.
      * Creates a new cell with the new value and sets it in place of the cell to edit.
-     * Throws an exception if no file is currently open.
      *
      * @param args args[1] is the row, args[2] is the column, args[3] is the new value
      * @return a success message with the edited cell
+     * @throws NoFileOpenException if no file is currently open
+     * @throws InvalidValueException if the value is not a valid cell type
      */
     @Override
     public String execute(String[] args) {
@@ -48,7 +50,7 @@ public class EditCommand implements Command {
             if (newValue.startsWith("\"")) {
                 newCell = new StringCell(row, col, newValue);
             } else if (newValue.startsWith("=")) {
-                newCell = new FormulaCell(row, col, newValue, currentState.getCurrentTable());
+                newCell = new FormulaCell(row, col, newValue, FormulaParser.getNeededCells(newValue, currentState.getCurrentTable()));
             } else if (newValue.contains(".")) {
                 try {
                     newCell = new DoubleCell(row, col, Double.parseDouble(newValue));

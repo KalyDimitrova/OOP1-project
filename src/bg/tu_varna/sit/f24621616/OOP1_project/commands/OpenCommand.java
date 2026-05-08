@@ -8,6 +8,7 @@ import bg.tu_varna.sit.f24621616.OOP1_project.cells.StringCell;
 import bg.tu_varna.sit.f24621616.OOP1_project.exceptions.FileAlreadyOpenException;
 import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Cell;
 import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Command;
+import bg.tu_varna.sit.f24621616.OOP1_project.parser.FormulaParser;
 import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
 
 import java.io.BufferedReader;
@@ -35,11 +36,11 @@ public class OpenCommand implements Command {
     /**
      * Opens a file and loads its contents into a new table.
      * If the file does not exist, creates a new empty file.
-     * Throws an exception if a file is already open.
-     * Throws an exception if an error occurs while reading the file.
      *
      * @param args args[1] is the file path to open
      * @return a success message with the opened file name
+     * @throws FileAlreadyOpenException if a file is already open
+     * @throws RuntimeException if an error occurs while reading the file
      */
     @Override
     public String execute(String args[]) {
@@ -66,7 +67,7 @@ public class OpenCommand implements Command {
                             } else if (cellValue.startsWith("\"")) {
                                 newCell = new StringCell(row, col, cellValue);
                             } else if (cellValue.startsWith("=")) {
-                                newCell = new FormulaCell(row, col, cellValue, table);
+                                newCell = new FormulaCell(row, col, cellValue, FormulaParser.getNeededCells(cellValue, table));
                             } else if (cellValue.contains(".")) {
                                 newCell = new DoubleCell(row, col, Double.parseDouble(cellValue));
                             } else {
