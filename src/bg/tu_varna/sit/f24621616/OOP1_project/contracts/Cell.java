@@ -7,7 +7,6 @@ package bg.tu_varna.sit.f24621616.OOP1_project.contracts;
 public abstract class Cell {
     /** The row index of the cell (1-based). */
     private int row;
-
     /** The column index of the cell (1-based). */
     private int col;
 
