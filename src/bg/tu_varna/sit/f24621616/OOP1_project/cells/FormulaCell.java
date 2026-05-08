@@ -39,8 +39,8 @@ public class FormulaCell extends Cell {
     // helper method to get the value of a cell
     private double getTokenValue(String token) {
         if (token.matches("R\\d+C\\d+")) {
-            int row = Integer.parseInt(token.substring(1, token.indexOf('C'))) - 1;
-            int col = Integer.parseInt(token.substring(token.indexOf('C') + 1)) - 1;
+            int row = Integer.parseInt(token.substring(1, token.indexOf('C')));
+            int col = Integer.parseInt(token.substring(token.indexOf('C') + 1));
 
             Cell cell = findCell(row, col);
             if (cell == null) return 0;
@@ -56,7 +56,6 @@ public class FormulaCell extends Cell {
 
     /**
      * Searches the list of cells for a cell at the given row and column.
-     * Adds 1 to row and col to convert from 0-based to 1-based indices.
      * Returns null if no cell is found at the given position.
      *
      * @param row the row index to search for
@@ -66,8 +65,7 @@ public class FormulaCell extends Cell {
     // helper method to find the needed cell for the calculations.
     private Cell findCell(int row, int col) {
         for (Cell cell : cells) {
-            // + 1 because the table is not 0-based
-            if (cell.getRow() == row + 1 && cell.getCol() == col + 1) {
+            if (cell.getRow() == row && cell.getCol() == col) {
                 return cell;
             }
         }
