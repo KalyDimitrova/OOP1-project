@@ -1,10 +1,7 @@
 package bg.tu_varna.sit.f24621616.OOP1_project.cells;
 
 import bg.tu_varna.sit.f24621616.OOP1_project.contracts.Cell;
-import bg.tu_varna.sit.f24621616.OOP1_project.table.Table;
-import org.w3c.dom.stylesheets.LinkStyle;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
